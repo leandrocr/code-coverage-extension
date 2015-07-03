@@ -17,7 +17,7 @@ default:
         path:      /
       drivers:
         - remote
-        - local
+        #- local
       filter:      ~
 #     filter:
 #       forceCoversAnnotation:                false

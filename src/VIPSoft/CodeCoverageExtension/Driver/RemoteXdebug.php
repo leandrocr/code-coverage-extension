@@ -59,6 +59,7 @@ class RemoteXdebug implements DriverInterface
         $this->config = $config;
 
         $this->client = $client;
+        $this->client->setSslVerification(false, false, 0);
         $this->client->setBaseUrl($config['base_url']);
     }
 
@@ -86,6 +87,8 @@ class RemoteXdebug implements DriverInterface
 
         $response = $request->send();
 
+        #var_dump($response->json());
+
         if ($response->getStatusCode() !== 200) {
             throw new \Exception('remote driver fetch failed: ' . $response->getReasonPhrase());
         }
@@ -111,7 +114,14 @@ class RemoteXdebug implements DriverInterface
             throw new \Exception($endpoint . ' method must be GET, POST, PUT, or DELETE');
         }
 
+        #var_dump($endpoint);
+        #var_dump($this->config[$endpoint]['path']);
+        #var_dump($method);
+
         $request = $this->client->$method($this->config[$endpoint]['path']);
+
+        #var_dump($request);
+
 
         if (isset($this->config['auth'])) {
             $request->setAuth($this->config['auth']['user'], $this->config['auth']['password']);
