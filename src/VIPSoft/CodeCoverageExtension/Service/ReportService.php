@@ -46,10 +46,12 @@ class ReportService
      */
     public function generateReport(\PHP_CodeCoverage $coverage)
     {
-        $format = $this->config['report']['format'];
+        $formats = $this->config['report']['formats'];
         $options = $this->config['report']['options'];
 
-        $report = $this->factory->create($format, $options);
-        $report->process($coverage);
+        foreach ($formats as $format) {
+            $report = $this->factory->create($format, $options);
+            $report->process($coverage);
+        }
     }
 }

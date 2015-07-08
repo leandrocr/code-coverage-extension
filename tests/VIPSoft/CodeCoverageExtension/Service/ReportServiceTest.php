@@ -46,13 +46,13 @@ END_OF_SQLITE
                        ->getMock();
 
         $factory = $this->getMock('VIPSoft\CodeCoverageCommon\Report\Factory');
-        $factory->expects($this->once())
+        $factory->expects($this->exactly(2))
                 ->method('create')
                 ->will($this->returnValue($report));
 
         $coverage = $this->getMock('PHP_CodeCoverage');
 
-        $service = new ReportService(array('report' => array('format' => 'html', 'options' => array())), $factory);
+        $service = new ReportService(array('report' => array('formats' => array('html', 'clover'), 'options' => array())), $factory);
         $service->generateReport($coverage);
     }
 }

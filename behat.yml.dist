@@ -49,6 +49,8 @@ default:
 #           files:
 #             ...
       report:
-        format:    html
+        formats: 
+          - html
+          - clover
         options:
-          target:: /tmp/report
+          target: /tmp/report

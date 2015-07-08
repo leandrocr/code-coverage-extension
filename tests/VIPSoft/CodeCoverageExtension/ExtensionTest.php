@@ -136,7 +136,7 @@ END_OF_CONFIG
                         'mapTestClassNameToCoveredClassName' => true
                     ),
                     'behat.code_coverage.config.report' => array(
-                        'format'    => 'fmt',
+                        'formats' => array('fmt', 'fmt2'),
                         'options' => array(
                             'target' => '/tmp'
                         )
@@ -215,7 +215,7 @@ END_OF_CONFIG
                         'mapTestClassNameToCoveredClassName' => true
                     ),
                     'report' => array(
-                        'format'    => 'fmt',
+                        'formats'    => array('fmt', 'fmt2'),
                         'options' => array(
                             'target' => '/tmp'
                         )
@@ -306,7 +306,7 @@ END_OF_CONFIG
                         'mapTestClassNameToCoveredClassName' => false
                     ),
                     'report'  => array(
-                        'format' => 'html',
+                        'formats' => array('html', 'clover'),
                         'options' => array(),
                     )
                 ),
@@ -359,7 +359,7 @@ END_OF_CONFIG
         $report = $this->getPropertyOnObject($children['report'], 'children');
 
         $this->assertCount(2, $report);
-        $this->assertTrue(isset($report['format']));
+        $this->assertTrue(isset($report['formats']));
         $this->assertTrue(isset($report['options']));
     }
 
