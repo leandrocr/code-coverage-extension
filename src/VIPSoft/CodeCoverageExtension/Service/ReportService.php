@@ -50,6 +50,9 @@ class ReportService
         $options = $this->config['report']['options'];
 
         foreach ($formats as $format) {
+            if ($format == 'clover') {
+                $options['target'] = $options['target'] . '/clover.xml';
+            }
             $report = $this->factory->create($format, $options);
             $report->process($coverage);
         }
